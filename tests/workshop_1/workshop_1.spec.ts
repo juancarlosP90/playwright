@@ -1,7 +1,7 @@
 import {test} from 'playwright/test';
 
 //Descripcion de la prueba
-test('Basic Navigation', async ({page})=>{
+test.skip('Basic Navigation', async ({page})=>{
     //Usaremos la pagina gitlab
     await page.goto('https://gitlab.com/');
     //Tiempo de espera para ver el contenido de la pagina
@@ -9,8 +9,18 @@ test('Basic Navigation', async ({page})=>{
     await page.reload();
 })
 
-test('Interacting with Web Element on Gitlab', async ({page})=>{
+test.skip('Interacting with Web Element on Gitlab', async ({page})=>{
     await page.goto('https://gitlab.com/');
     await page.click('#onetrust-accept-btn-handler');
-    await page.locator('#be-navigation-mobile');
+    await page.locator('#be-navigation-desktop').getByRole('link', {name: 'Get free trial'}).click();
+    //await page.locator('[data-testid="new-user-first-name-field"]').fill('Juan');
+    //await page.locator('[data-testid="new-user-last-name-field"]').fill('Pulido');
+    await page.getByTestId('new-user-first-name-field').fill('Juan');
+    await page.getByTestId('new-user-last-name-field').fill('Pulido');
+})
+
+test.skip('Using Various Locator Methods', async ({page})=>{
+    await page.goto('https://gitlab.com/');
+    await page.click('#onetrust-accept-btn-handler');//cookie btn click
+    await page.getByRole('link', {name: 'Sign in'}).click();
 })
