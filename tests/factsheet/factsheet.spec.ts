@@ -25,6 +25,5 @@ test.only('April Factsheet for variis', async ({page})=>{
 
     const page2 = await page2Promise;
     const download = await downloadPromise;
-    await page.waitForTimeout(5000);
 })
 
